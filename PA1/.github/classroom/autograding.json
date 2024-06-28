@@ -1,0 +1,134 @@
+{
+  "tests": [
+    {
+      "name": "1. Verify server runs as child",
+      "setup": "make test > report.txt",
+      "run": "grep \"[[:space:]]One[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 15
+    },
+    {
+      "name": "2. Requesting Data Points",
+      "setup": "",
+      "run": "grep \"[[:space:]]Two[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 2
+    },
+    {
+      "name": "3. Requesting Data Points",
+      "setup": "",
+      "run": "grep \"[[:space:]]Three[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 3
+    },
+    {
+      "name": "4. Requesting Multiple Data Points - 1",
+      "setup": "",
+      "run": "grep \"[[:space:]]Four[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 3
+    },
+    {
+      "name": "5. Requesting Multiple Data Points - 2",
+      "setup": "",
+      "run": "grep \"[[:space:]]Five[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 3
+    },
+    {
+      "name": "6. Requesting Files - 1",
+      "setup": "",
+      "run": "grep \"[[:space:]]Six[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 4
+    },
+    {
+      "name": "7. Requesting Files - 2",
+      "setup": "",
+      "run": "grep \"[[:space:]]Seven[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 4
+    },
+    {
+      "name": "8. Requesting Files  - 3 (with varying buffer capacity)",
+      "setup": "",
+      "run": "grep \"[[:space:]]Eight[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 4
+    },
+    {
+      "name": "9. Requesting Binary Files - 1 (with default buffer capacity)",
+      "setup": "",
+      "run": "grep \"[[:space:]]Nine[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 5
+    },
+    {
+      "name": "10. Requesting Binary Files - 2 (with varying buffer capacity)",
+      "setup": "",
+      "run": "grep \"[[:space:]]Ten[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 5
+    },
+    {
+      "name": "11. Requesting New Channel - 1",
+      "setup": "",
+      "run": "grep \"[[:space:]]Eleven[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 3
+    },
+    {
+      "name": "12. Requesting New Channel -2",
+      "setup": "",
+      "run": "grep \"[[:space:]]Twelve[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 4
+    },
+    {
+      "name": "13. Closing Channels",
+      "setup": "",
+      "run": "grep \"[[:space:]]Thirteen[[:space:]]\" report.txt",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 5
+    }
+  ]
+}
