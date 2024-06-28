@@ -32,14 +32,6 @@
 *.app
 shell
 
-# testing files
-test-files/
-a
-b
-test.txt
-output.txt
-out.trace
-
 # IDE and temp files
 .vscode/
 *~
