@@ -1,0 +1,74 @@
+{
+  "tests": [
+    {
+      "name": "Compilation",
+      "setup": "make test > ./.gradefile",
+      "run": "grep \"Zero\" .gradefile",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 5,
+      "points": 10
+    },
+    {
+      "name": "Memory Leakage",
+      "setup": "",
+      "run": "grep \"One\" .gradefile",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 2,
+      "points": 10
+    },
+    {
+      "name": "Scheduling with Jobs Shorter Than Quantums pt 1",
+      "setup": "",
+      "run": "grep \"Two\" .gradefile",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 2,
+      "points": 15
+    },
+    {
+      "name": "Scheduling with Jobs Shorter Than Quantums pt 2",
+      "setup": "",
+      "run": "grep \"Three\" .gradefile",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 2,
+      "points": 15
+    },
+    {
+      "name": "Scheduling with Jobs Longer Than Quantums pt 1",
+      "setup": "",
+      "run": "grep \"Four\" .gradefile",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 2,
+      "points": 15
+    },
+    {
+      "name": "Scheduling with Jobs Longer Than Quantums pt 2",
+      "setup": "",
+      "run": "grep \"Five\" .gradefile",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 2,
+      "points": 15
+    },
+    {
+      "name": "Scheduling with NOP",
+      "setup": "",
+      "run": "grep \"Six\" .gradefile",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 2,
+      "points": 20
+    }
+  ]
+}

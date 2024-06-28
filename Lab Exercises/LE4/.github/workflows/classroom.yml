@@ -1,0 +1,81 @@
+name: Autograding Tests
+'on':
+- push
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Compilation
+      id: compilation
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Compilation
+        setup-command: make test > ./.gradefile
+        command: grep "One" .gradefile
+        timeout: 10
+        max-score: 5
+    - name: Memory Leakage
+      id: memory-leakage
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Memory Leakage
+        setup-command: ''
+        command: grep "Two" .gradefile
+        timeout: 15
+        max-score: 5
+    - name: Output without Dependencies
+      id: output-without-dependencies
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Output without Dependencies
+        setup-command: ''
+        command: grep "Three" .gradefile
+        timeout: 15
+        max-score: 16
+    - name: Output with Dependencies
+      id: output-with-dependencies
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Output with Dependencies
+        setup-command: ''
+        command: grep "Four" .gradefile
+        timeout: 20
+        max-score: 17
+    - name: Use of Timers
+      id: use-of-timers
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Use of Timers
+        setup-command: ''
+        command: grep "Five" .gradefile
+        timeout: 15
+        max-score: 24
+    - name: Use of Signals
+      id: use-of-signals
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Use of Signals
+        setup-command: ''
+        command: grep "Six" .gradefile
+        timeout: 15
+        max-score: 33
+    - name: Autograding Reporter
+      uses: education/autograding-grading-reporter@v1
+      env:
+        COMPILATION_RESULTS: "${{steps.compilation.outputs.result}}"
+        MEMORY-LEAKAGE_RESULTS: "${{steps.memory-leakage.outputs.result}}"
+        OUTPUT-WITHOUT-DEPENDENCIES_RESULTS: "${{steps.output-without-dependencies.outputs.result}}"
+        OUTPUT-WITH-DEPENDENCIES_RESULTS: "${{steps.output-with-dependencies.outputs.result}}"
+        USE-OF-TIMERS_RESULTS: "${{steps.use-of-timers.outputs.result}}"
+        USE-OF-SIGNALS_RESULTS: "${{steps.use-of-signals.outputs.result}}"
+      with:
+        runners: compilation,memory-leakage,output-without-dependencies,output-with-dependencies,use-of-timers,use-of-signals

@@ -1,0 +1,51 @@
+name: Autograding Tests
+'on':
+- push
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Compilation
+      id: compilation
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Compilation
+        setup-command: make test > .gradefile
+        command: grep "One" .gradefile
+        timeout: 5
+        max-score: 10
+    - name: Correct Output for Sections 1 and 3
+      id: correct-output-for-sections-1-and-3
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Correct Output for Sections 1 and 3
+        setup-command: ''
+        command: grep "Two" .gradefile
+        timeout: 10
+        max-score: 33
+    - name: Use of Threads
+      id: use-of-threads
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Use of Threads
+        setup-command: ''
+        command: grep "Three" .gradefile
+        timeout: 10
+        max-score: 24
+    - name: Autograding Reporter
+      uses: education/autograding-grading-reporter@v1
+      env:
+        COMPILATION_RESULTS: "${{steps.compilation.outputs.result}}"
+        CORRECT-OUTPUT-FOR-SECTIONS-1-AND-3_RESULTS: "${{steps.correct-output-for-sections-1-and-3.outputs.result}}"
+        USE-OF-THREADS_RESULTS: "${{steps.use-of-threads.outputs.result}}"
+      with:
+        runners: compilation,correct-output-for-sections-1-and-3,use-of-threads
